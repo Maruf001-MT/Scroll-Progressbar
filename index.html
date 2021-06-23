@@ -1,0 +1,82 @@
+<!DOCTYPE.html>
+<html>
+<head>
+   <title></title>
+<style>
+ *{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+ }
+body{
+  height:1000px;
+  background:#000;
+}
+
+::-webkit-scrollbar{
+  width:0;
+}
+#scrollPath{
+  position:fixed;
+  width:5px;
+  height:100%;
+  top:0;
+  right:0;
+  background:rgba(255,255,255,0.05);}
+#progressbar{
+  position:fixed;
+  width:10px;
+  top:0;
+  right:0;
+  background:linear-gradient(to top,#008aff,#00ffe7);
+  animation:progressbar 5s linear infinite;
+}
+@keyframes progressbar{
+  0%,100%{
+    filter:hue-rotate(0deg);
+  }
+  50%{
+    filter:hue-rotate(360deg);
+  }
+}
+#progressbar::before{
+  content:'';
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  position:absolute;
+  background:linear-gradient(to top,#008aff,#00ffe7);
+  filter:blur(25px);
+}
+#progressbar::after{
+  content:'';
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  position:absolute;
+  background:linear-gradient(to top,#008aff,#00ffe7);
+  filter:blur(25px);
+}
+</style>
+</head>
+<body>
+   <div id="progressbar"></div>
+   <div id="scrollPath"></div>
+   <section>
+   <p></p>
+   </section>
+   
+   
+   <script type="text/javascript">
+     let progress=document.getElementById('progressbar');
+     let totalHeight=document.body.scrollHeight-window.innerHeight;
+    window.onscroll=function(){
+      let progressHeight=(window.pageYOffset / totalHeight)*100;
+    progress.style.height=progressHeight + "%";
+      
+    }
+   </script>
+</body>
+</html>
